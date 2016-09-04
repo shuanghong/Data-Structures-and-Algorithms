@@ -11,8 +11,8 @@ int main(int argc, char* argv[])
               << "array1[2]=" << array1[2] << std::endl
               << std::endl;
 
-// array[2], array[3]均调用myArray(std::initializer_list<T> list)
-// 注意 array[3] 不是赋值， 而是使用列表初始化
+// array2, array3均调用myArray(std::initializer_list<T> list)
+// 注意 array3 不是赋值， 而是使用列表初始化
     myArray<int, 3> array2{1, 2, 3}; 
     std::cout << "array2 value:" << std::endl
               << "array2[0]=" << array2[0] << std::endl
