@@ -225,9 +225,31 @@ public:
 
 
 
+/*-------------- Iterator ---------------*/
+
+    iterator begin() noexcept
+    {
+        return start_;
+    }
 
 
+    const_iterator cbegin() noexcept
+    {
+        return start_;
+    }
 
 
+    iterator end() noexcept
+    {
+        return finish_;
+    }
 
+
+    const_iterator cend() noexcept
+    {
+        return finish_;
+    }
+
+
+/*-------------- Operations ---------------*/
 #endif
