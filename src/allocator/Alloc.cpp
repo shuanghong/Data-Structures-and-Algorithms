@@ -70,7 +70,7 @@ void myAlloc::deallocate(void *ptr, std::size_t bytes)
 
 /*****************************
  * 
- * brief: 根据所需的字节数找到对应的 free-list(0~7)
+ * brief: 根据所需的字节数找到对应的 free-list(0~15)
  * 1~8 bytes --- free_list[0]
  * 9~16 bytes --- free_list[1]
  * 17~24 bytes --- free_list[2]
