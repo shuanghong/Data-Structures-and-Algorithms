@@ -9,3 +9,5 @@
 
 ### 栈
 - [介绍](https://github.com/shuanghong/Data-Structures-and-Algorithms/tree/master/DataStruct/Stack)
+
+![](http://i.imgur.com/pxSm8e4.png)
