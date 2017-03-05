@@ -81,5 +81,13 @@ int main(int argc, char* argv[])
     }
 */
 
+    std::cout << std::endl;
+    std::cout << std::endl;
+    list.printfList();
+    std::cout << "Reverse list..." << std::endl;
+    list.reverseList(list.getNodeAtPosition(1u));
+    std::cout << "After reverse list..." << std::endl;
+    list.printfList();
+
     return 0;
 }

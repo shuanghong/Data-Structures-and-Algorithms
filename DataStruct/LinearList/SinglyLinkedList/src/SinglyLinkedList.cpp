@@ -246,6 +246,30 @@ void SinglyLinkedList::printfList() const
 
 }
 
+Node* SinglyLinkedList::reverseList(Node *node)
+{
+    if ((isListEmpty() == true) || (node == nullptr))
+    {
+        std::cout << __func__  << "() " << "List is null" << std::endl;
+    
+        return nullptr;
+    }
+
+    if (node->m_next == nullptr)
+    {
+        return node;
+    }
+
+    Node *tailnode = reverseList(node->m_next);
+
+    node->m_next->m_next = node;
+    node->m_next = nullptr;
+
+    m_head->m_next = tailnode;
+
+    return tailnode;
+}
+
 void SinglyLinkedList::clearList()
 {
     if (isListEmpty() == true)

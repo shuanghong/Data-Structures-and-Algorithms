@@ -47,6 +47,8 @@ public:
 
     bool removeNode(const Listlength position);
 
+    Node* reverseList(Node *head);
+
     bool isListEmpty() const;
     void printfList() const;
     void clearList();
