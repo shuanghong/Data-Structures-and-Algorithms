@@ -26,8 +26,8 @@ public:
 
     DoublyLinkedList(const DoublyLinkedList&) = delete;
     DoublyLinkedList& operator=(const DoublyLinkedList&) = delete;
-    DoublyLinkedList(const DoublyLinkedList&&) = delete;
-    DoublyLinkedList& operator=(const DoublyLinkedList&&) = delete;
+    DoublyLinkedList(DoublyLinkedList&&) = delete;
+    DoublyLinkedList& operator=(DoublyLinkedList&&) = delete;
 
     ~DoublyLinkedList();
 

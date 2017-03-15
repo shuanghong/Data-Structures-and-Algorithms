@@ -32,8 +32,8 @@ public:
     
     SinglyLinkedList(const SinglyLinkedList&) = delete;
     SinglyLinkedList& operator=(const SinglyLinkedList&) = delete;
-    SinglyLinkedList(const SinglyLinkedList&&) = delete;
-    SinglyLinkedList& operator=(const SinglyLinkedList&&) = delete;
+    SinglyLinkedList(SinglyLinkedList&&) = delete;
+    SinglyLinkedList& operator=(SinglyLinkedList&&) = delete;
 
     ~SinglyLinkedList();
 
