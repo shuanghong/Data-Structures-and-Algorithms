@@ -84,7 +84,46 @@
 
 
 ## 相关问题及算法
-- 反转
-- 求倒数第k个结点
+
+### 反转
+
+单链表的反转有多种方法, 这里重点描述递归法.
+
+- 递归法
+	1. 算法思路: 假如给定一个链表: 1->2->3->4->5, 要求反转成 5->4->3->2->1. 假定链表已经转变为 1->2<-3<-4<-5, 即从第二个结点开始, 后面的结点已经倒转完毕, 只要把结点 1 和结点 2 之间的指向关系倒转一下. 于是就形成一种递归思路, 如果要反转 n 个结点的链表, 如果第 1 个结点和后面 n-1 个结点已经反转了的话, 只需要处理第 1 个和第 2 个结点的指向关系; 要使得后面 n-1 个结点反转的话, 就得先使得后 n-2 个结点反转, 于是就这么递归下去, 最后只剩下尾结点时, 什么都不用做已经倒转好了.
+	
+	2. 代码实现
+
+			Node* SinglyLinkedList::reverseList(Node *node)
+			{
+			    if ((isListEmpty() == true) || (node == nullptr))
+			    {
+			        std::cout << __func__  << "() " << "List is null" << std::endl;
+			    
+			        return nullptr;
+			    }
+			
+			    if (node->m_next == nullptr)	// 尾结点
+			    {
+			        return node;
+			    }
+			
+			    Node *tailnode = reverseList(node->m_next);
+			
+			    node->m_next->m_next = node;
+			    node->m_next = nullptr;
+			
+			    m_head->m_next = tailnode;
+			
+			    return tailnode;
+			}
+
+	3. 过程演示:  
+		注意函数入参是从指向第 1 个结点的指针开始, 因为如果从 head 开始的话, 执行 node->m\_next->m\_next = node;node->m\_next = nullptr; 相当于把第 1 个结点指向 head, head->next=NULL.  
+		当递归到第 n-1 个结点时, node->m_next 是尾结点, 递归结束, 返回原链表的尾结点.
+
+		![](http://i.imgur.com/vowFPGC.png)
+
+### 求倒数第k个结点
 
 	
