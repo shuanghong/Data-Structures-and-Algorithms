@@ -9,6 +9,8 @@
 - [线性表(2) - 单链表](https://github.com/shuanghong/Data-Structures-and-Algorithms/tree/master/DataStruct/LinearList/SinglyLinkedList)
 - [线性表(3) - 双向链表](https://github.com/shuanghong/Data-Structures-and-Algorithms/tree/master/DataStruct/LinearList/DoublyLinkedList)
 
+### 队列
+- [队列](https://github.com/shuanghong/Data-Structures-and-Algorithms/tree/master/DataStruct/Queue)
 ### 栈
 - [介绍](https://github.com/shuanghong/Data-Structures-and-Algorithms/tree/master/DataStruct/Stack)
 
