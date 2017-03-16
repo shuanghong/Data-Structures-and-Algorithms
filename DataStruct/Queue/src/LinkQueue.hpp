@@ -33,10 +33,12 @@ public:
     virtual void pop() override; 
 
     virtual DataType front() const override; 
+    virtual DataType back() const override; 
 
     virtual Listlength size() override; 
     virtual bool isEmpty() override; 
 
+    void printfQueue() const;
 private:
     Listlength m_length;
     Node *m_head;

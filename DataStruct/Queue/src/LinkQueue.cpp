@@ -12,6 +12,8 @@ LinkQueue::LinkQueue()
     m_rear = m_head;
 
     m_length = 0u;
+
+    std::cout << __func__ << "() "<< "head address: " << m_head << std::endl;
 }
 
 
@@ -66,9 +68,19 @@ DataType LinkQueue::front() const
     }
 
     return m_head->next->data;
-
 }
 
+DataType LinkQueue::back() const
+{
+    if (m_head->next == nullptr)
+    {
+        std::cout << __func__ << "() "<< "Error: queue is Null" << std::endl;
+        return -1;
+    }
+
+    return m_rear->data;
+
+}
 
 Listlength LinkQueue::size()
 {
@@ -82,6 +94,25 @@ bool LinkQueue::isEmpty()
         return true;
 
     return false;
+}
+
+void LinkQueue::printfQueue() const
+{
+    if (m_head->next == nullptr)
+    {
+        std::cout << __func__ << "() "<< "Error: queue is Null" << std::endl;
+        return;
+    }
+
+    Node *printnode = m_head->next;
+
+    while (printnode != nullptr)
+    {
+        std::cout << __func__ << "() "<< "Node value:" << printnode->data << "    Next node address: " << printnode->next << std::endl;
+
+        printnode = printnode->next;
+    }
+
 }
 
 }

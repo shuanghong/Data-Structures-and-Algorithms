@@ -20,6 +20,7 @@ public:
     virtual void pop() = 0; 
 
     virtual DataType front() const = 0 ; 
+    virtual DataType back() const = 0 ; 
 
     virtual Listlength size() = 0; 
     virtual bool isEmpty() = 0; 
