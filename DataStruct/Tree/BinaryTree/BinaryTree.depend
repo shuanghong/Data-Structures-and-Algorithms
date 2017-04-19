@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1491580580 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\true\binarytree\main.cpp
+	<iostream>
+	"BinaryTree.hpp"
+
+1491580649 i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\true\binarytree\binarytree.hpp
+	<cstdint>
+
+1491580259 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\true\binarytree\binarytree.cpp
+	<iostream>
+	"BinaryTree.hpp"
+
+1492267418 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\tree\binarytree\main.cpp
+	<iostream>
+	"BinaryTree.hpp"
+
+1492270175 i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\tree\binarytree\binarytree.hpp
+	<cstdint>
+
+1492267437 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\tree\binarytree\binarytree.cpp
+	<iostream>
+	"BinaryTree.hpp"
+

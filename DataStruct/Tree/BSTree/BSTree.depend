@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1491568435 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\true\bstree\bstree\bstree.cpp
+	<iostream>
+	"BSTree.hpp"
+
+1491568374 i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\true\bstree\bstree\bstree.hpp
+	<cstdint>
+	<array>
+
+1491568501 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\true\bstree\bstree\main.cpp
+	"BSTree.hpp"
+
+1492269637 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\tree\bstree\bstree\bstree.cpp
+	<iostream>
+	"BSTree.hpp"
+
+1492269696 i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\datastruct\tree\bstree\bstree\bstree.hpp
+	<cstdint>
+	<array>
+
