@@ -221,9 +221,6 @@ public:
 
         return *this;
     }
-};
-
-
 
 /*-------------- Iterator ---------------*/
 
@@ -250,6 +247,7 @@ public:
         return finish_;
     }
 
+};
 
 /*-------------- Operations ---------------*/
 #endif
