@@ -2,10 +2,19 @@
 #define _BINARYTREE_HPP_
 
 #include<cstdint>
+#include<vector>
 
 namespace binarytree
 {
-using DataType = uint32_t;
+
+enum class BuildMode: uint32_t
+{
+    DepthFirst = 0,
+    LayerFirst,
+    Invalid
+};
+
+using DataType = char;
 using LengthType = uint32_t;
 
 struct Node
@@ -37,22 +46,29 @@ public:
 
     ~BinaryTree();
 
-    void buildTreeWithLeftAndRight();
-    void buildTreeWithLeft();
+    void buildTree(std::vector<DataType> &nodes, BuildMode mode);
+    void showTree(void);
 
-    void findMaxLen(Node *root);
-    void destory(Node *root);
+    void findMaxLen(void);
+    int findMaxLenBetter(void);
+
     inline LengthType getMaxLen() const
     {
         return nMaxLen;
     };
 
-    int height(Node *root);
-    int findMaxLenBetter(Node *root);
+private:
+    Node* buildTreeByDepth(Node *root, std::vector<DataType> &nodes, int &index);
+    Node* buildTreeByLayer(std::vector<DataType> &nodes);
 
-    Node *m_root;
+    void showTree(Node *root);
+    void findMaxLen(Node *root);
+    int findMaxLenBetter(Node *root);
+    int height(Node *root);
+    void destory(Node *root);
 
 private:
+    Node *m_root;
     LengthType nMaxLen;
 };
 
