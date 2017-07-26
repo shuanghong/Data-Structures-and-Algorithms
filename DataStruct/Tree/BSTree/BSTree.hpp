@@ -2,11 +2,19 @@
 #define _BSTREE_HPP_
 
 #include<cstdint>
-#include<array>
+#include<vector>
 
 namespace binarysearchtree
 {
-using DataType = uint32_t;
+
+enum class InsertMode: uint32_t
+{
+    Recursion= 0,
+    Iteration,
+    Invalid
+};
+
+using DataType = char;
 
 struct Node
 {
@@ -35,8 +43,9 @@ public:
 
     ~BSTree();
 
-    void constructTree(const DataType *begin, const DataType *end); // 用数组值构建树
-    bool insertNode(DataType key);                                  // 插入节点
+    void buildTree(std::vector<DataType> &nodes, InsertMode mode);
+    void showTree(void);
+
 //    void removeNode(DataType key);
 
     void preOrder();        //前序遍历二叉树
@@ -44,17 +53,18 @@ public:
     void postOrder();       //后序遍历二叉树
     void layerOrder();      //层次遍历二叉树
 
-    int height(Node *root);
-    int findMaxLenBetter(Node *root);
+private:
+    Node* insertByRecursion(Node *node, DataType key);
+    bool insertByIteration(DataType key);
+    void showTree(Node *root);
 
-public:
-    Node *m_root;
+    int height(Node *node);
 
 private:
+    Node *m_root;
 };
 
 
 }
-
 
 #endif // _BSTREE_HPP_
