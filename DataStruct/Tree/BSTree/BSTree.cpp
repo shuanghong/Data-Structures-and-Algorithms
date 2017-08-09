@@ -19,22 +19,22 @@ BSTree::~BSTree()
 
 }
 /*
-* brief: 用插入节点的方式构建二叉查找树, 插入有分递归和迭代两种方法.
+* brief: 用插入节点的方式构建二叉查找树, 插入有递归和迭代两种方法.
 *
 *
 */
-void BSTree::buildTree(std::vector<DataType> &nodes, InsertMode mode)
+void BSTree::buildTree(std::vector<DataType> &nodes, Mode mode)
 {
-    assert(mode != InsertMode::Invalid);
+    assert(mode != Mode::Invalid);
 
-    if (mode == InsertMode::Recursion)
+    if (mode == Mode::Recursion)
     {
         for (auto it = nodes.begin(); it != nodes.end(); ++it)
         {
             m_root = insertByRecursion(this->m_root, *it);
         }
     }
-    else if (mode == InsertMode::Iteration)
+    else if (mode == Mode::Iteration)
     {
         for (const auto &it : nodes)
         {
@@ -120,6 +120,70 @@ bool BSTree::insertByIteration(DataType key)
     return true;
 }
 
+Node *BSTree::search(DataType key, Mode mode)
+{
+    assert(mode != Mode::Invalid);
+
+    if (mode == Mode::Recursion)
+    {
+        return searchByRecursion(this->m_root, key);
+    }
+    else if (mode == Mode::Iteration)
+    {
+        return searchByIteration(this->m_root, key);
+    }
+
+}
+
+Node *BSTree::searchByRecursion(Node *node, DataType key)
+{
+    if (node == nullptr)    //空树.
+    {
+        printf("%s(), Tree is null or search failed, key: %d\n", __func__, key);
+        return nullptr;
+    }
+
+    if (key == node->m_key)
+    {
+        printf("%s(), done, key: %d\n", __func__, key);
+        return node;
+    }
+    else if (key > node->m_key)
+        return searchByRecursion(node->rchild, key);// 递归下去
+    else //(key < node->m_key)
+        return searchByRecursion(node->lchild, key);// 递归下去
+}
+
+Node *BSTree::searchByIteration(Node *node, DataType key)
+{
+    if (node == nullptr)    //空树.
+    {
+        printf("%s(), Tree is null!!! key: %d\n", __func__);
+        return nullptr;
+    }
+
+    Node *tempnode = node;
+
+    while(tempnode != nullptr)
+    {
+        if (key == tempnode->m_key)
+        {
+            printf("%s(), done, key: %d\n", __func__, key);
+            return tempnode;
+        }
+        else if (key > tempnode->m_key)
+        {
+            tempnode = tempnode->rchild;
+        }
+        else //(key < node->m_key)
+        {
+            tempnode = tempnode->lchild;
+        }
+    }
+	// 运行到这里还没退出就是没找到key了
+    printf("%s(), search failed, key: %d\n", __func__, key);
+    return nullptr;
+}
 
 // 计算树的高度
 int BSTree::height(Node *pRoot)
@@ -137,7 +201,7 @@ void BSTree::showTree()
 
 /*brief: 打印二叉查找树, 参考层次遍历
  *       1. 首先把树根结点存入队列
- *       2. 对手结点出队列并打印之, 再把它的左右子结点分别存入队列
+ *       2. 对手结点出队列并打印之, 再把它的左右子结点()分别存入队列
  *       3. 重复上面操作, 直至队列为空
  */
 void BSTree::showTree(Node *root)

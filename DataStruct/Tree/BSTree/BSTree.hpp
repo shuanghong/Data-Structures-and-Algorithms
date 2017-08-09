@@ -7,7 +7,7 @@
 namespace binarysearchtree
 {
 
-enum class InsertMode: uint32_t
+enum class Mode: uint32_t
 {
     Recursion= 0,
     Iteration,
@@ -43,8 +43,9 @@ public:
 
     ~BSTree();
 
-    void buildTree(std::vector<DataType> &nodes, InsertMode mode);
+    void buildTree(std::vector<DataType> &nodes, Mode mode);
     void showTree(void);
+    Node* search(DataType key, Mode mode);
 
 //    void removeNode(DataType key);
 
@@ -57,6 +58,8 @@ private:
     Node* insertByRecursion(Node *node, DataType key);
     bool insertByIteration(DataType key);
     void showTree(Node *root);
+    Node* searchByRecursion(Node *node, DataType key);
+    Node* searchByIteration(Node *node, DataType key);
 
     int height(Node *node);
 
