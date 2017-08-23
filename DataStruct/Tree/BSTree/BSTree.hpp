@@ -49,9 +49,9 @@ public:
 
 //    void removeNode(DataType key);
 
-    void preOrder();        //前序遍历二叉树
-    void inOrder();         //中序遍历二叉树
-    void postOrder();       //后序遍历二叉树
+    void preOrder(Mode mode);        //前序遍历二叉树
+    void inOrder(Mode mode);         //中序遍历二叉树
+    void postOrder(Mode mode);       //后序遍历二叉树
     void layerOrder();      //层次遍历二叉树
 
 private:
@@ -62,6 +62,15 @@ private:
     Node* searchByIteration(Node *node, DataType key);
 
     int height(Node *node);
+
+    void preOrderByRecursion(Node *node);
+    void preOrderByIteration(Node *node);
+    void inOrderByRecursion(Node *node);
+    void inOrderByIteration(Node *node);
+    void postOrderByRecursion(Node *node);
+    void postOrderByIteration(Node *node);
+
+
 
 private:
     Node *m_root;

@@ -19,5 +19,18 @@ int main(int argc, char* argv[])
     tree1.search(7, Mode::Iteration);
     tree1.search(6, Mode::Iteration);
 
+    tree0.preOrder(Mode::Recursion);
+    printf("\n");
+    tree0.preOrder(Mode::Iteration);
+    printf("\n");
+
+    tree0.inOrder(Mode::Recursion);
+    printf("\n");
+    tree0.inOrder(Mode::Iteration);
+    printf("\n");
+
+    tree0.postOrder(Mode::Recursion);
+    printf("\n");
+    tree0.postOrder(Mode::Iteration);
     return 0;
 }
