@@ -142,7 +142,7 @@
 
 	/*brief: 打印二叉树, 参考二叉树的层次遍历
 	 *       1. 首先把二叉树根结点存入队列
-	 *       2. 对手结点出队列并打印之, 再把它的左右子结点分别存入队列
+	 *       2. 队首结点出队列并打印之, 再把它的左右子结点分别存入队列
 	 *       3. 重复上面操作, 直至队列为空
 	 */
 	void BinaryTree::showTree(Node *root)
@@ -288,7 +288,7 @@
 	
 ![](http://i.imgur.com/p8Jv4e7.png)
 
-参考:
+参考:  
 [http://www.cnblogs.com/miloyip/archive/2010/02/25/binary_tree_distance.html](http://www.cnblogs.com/miloyip/archive/2010/02/25/binary_tree_distance.html)
 [https://github.com/luofengmacheng/algorithms/blob/master/bop/3.8.md](https://github.com/luofengmacheng/algorithms/blob/master/bop/3.8.md)
 [https://github.com/liangsonghua/algorithm/blob/master/5.6%20%E4%BA%8C%E5%8F%89%E6%A0%91_%E6%A0%91%E4%B8%8A%E6%9C%80%E8%BF%9C%E8%B7%9D%E7%A6%BB.cpp](https://github.com/liangsonghua/algorithm/blob/master/5.6%20%E4%BA%8C%E5%8F%89%E6%A0%91_%E6%A0%91%E4%B8%8A%E6%9C%80%E8%BF%9C%E8%B7%9D%E7%A6%BB.cpp)
