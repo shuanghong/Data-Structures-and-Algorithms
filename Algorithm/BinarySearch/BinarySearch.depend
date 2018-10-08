@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1539005467 source:i:\cloud\document\embedded\programming\datastructure & algothrim\data-structures-and-algorithms\algorithm\binarysearch\main.cpp
+	<iostream>
+	<assert.h>
+
