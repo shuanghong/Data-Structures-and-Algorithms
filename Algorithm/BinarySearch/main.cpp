@@ -1,12 +1,36 @@
 #include <iostream>
-#include <assert.h>
+#include <cassert>
+
+void printSearch(const int array[], int size, int target, int low, int high, int mid)
+{
+    static bool flag = true;
+    static int counter = 0;
+    auto printArray = [](const int array[], int size, int target)
+    {
+        std::cout << "array: ";
+        for (auto i = 0; i < size; ++i)
+        {
+            std::cout << array[i] << " ";
+        }
+        std::cout << "  target:" << target << std::endl;
+    };
+    if (flag)
+    {
+        printArray(array, size, target);
+        flag = false;
+    }
+    std::cout << "low:" << low << " high:" << high << " mid:" << mid
+              << " array[mid]=" << array[mid] << (array[mid] >= target ? " >= " : " < ") << target
+              << "  compare counter: " << ++counter
+              << std::endl;
+}
+
 
 /* brief: 二分查找有序数组
  *
  * 入参: 数组, 数组大小, 查找目标值
  * 返回值: 找到, 返回该值所在的位置; 未找到, 返回 -1
  */
-
 int BinarySearch(const int array[], int n, int target)
 {
     assert(n > 1);
@@ -17,6 +41,7 @@ int BinarySearch(const int array[], int n, int target)
     while (low <= high)     // 存在 low == high 的情况
     {
         int mid = low + ((high - low) >> 1);
+        printSearch(array, n, target, low, high, mid);
 
         if (array[mid] > target)
         {
@@ -30,6 +55,117 @@ int BinarySearch(const int array[], int n, int target)
             return mid;
     }
     return -1;
+}
+
+int BinarySearchV2(const int array[], int n, int target)
+{
+    assert(n > 0);
+
+    int low = 0;
+    int high = n;
+
+    while (low < high)
+    {
+        int mid = low + ((high - low) >> 1);
+        printSearch(array, n, target, low, high, mid);
+
+        if (array[mid] > target)
+        {
+            high = mid;
+        }
+        else if (array[mid] < target)
+        {
+            low = mid + 1;
+        }
+        else
+            return mid;
+    }
+    if (low != n && array[low] == target)
+        return low;
+    return -1;
+}
+
+void testBinarySearch()
+{
+    int a[] = {0,1,2,3,4,5,6,7};
+    int size = sizeof(a)/sizeof(int);
+
+    int ret = BinarySearchV2(a, size, 3);
+    //int ret = BinarySearchByRecursion(a, 0, size-1, i);
+    if (ret != -1)
+    {
+        std::cout << "Search success, index: " << ret << std::endl;
+    }
+    else
+        std::cout << "Search failed!" << std::endl;
+
+}
+
+int floorV1(const int array[], int n, int target)
+{
+    int targetindex = BinarySearch(array, n, target);
+    if (targetindex == -1)
+    {
+        return -1;
+    }
+    if (targetindex == 0)
+    {
+        return 0;
+    }
+
+    int first = targetindex;
+
+    while (array[first-1] == array[targetindex])
+    {
+        first = first - 1;
+    }
+    return first;
+}
+
+int floorV2(const int array[], int n, int target)
+{
+    assert(n > 1);
+
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high)
+    {
+        int mid = low + ((high - low) >> 1);
+        printSearch(array, n, target, low, high, mid);
+
+        if (array[mid] >= target)
+        {
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+    }
+    std::cout << "while exit, low:" << low << " high:" << high << std::endl;
+    if(array[low] > target )
+        return low - 1;
+
+    return low;
+}
+void testFloor()
+{
+    int a[] = {0,1,1,2,2,2,3,3,3,3,4,4,4,6,7};
+    int size = sizeof(a)/sizeof(int);
+
+    for (int i = 0; i <= 8; ++i)
+    {
+        int ret = floorV2(a, size, i);
+
+        if (ret != -1)
+        {
+            std::cout << "Search success, first index: " << ret << std::endl;
+        }
+        else
+            std::cout << "Search failed!" << std::endl;
+    }
+
 }
 
 int BinarySearchByRecursion(const int array[], int low, int high, int target)
@@ -54,17 +190,10 @@ int BinarySearchByRecursion(const int array[], int low, int high, int target)
 
 int main()
 {
-    int a[] = {0,1,2,5,5,6,6,7,8,9,11,12};
+    testBinarySearch();
 
-    //int ret = BinarySearch(a, sizeof(a)/sizeof(int), 5);
-    int ret = BinarySearchByRecursion(a, 0, sizeof(a)/sizeof(int) - 1, 5);
-
-    if (ret != -1)
-    {
-        std::cout << "Search success, index: " << ret << " value: "<< a[ret] << std::endl;
-    }
-    else
-        std::cout << "Search failed!" << std::endl;
+    //testFloor();
 
     return 0;
+
 }
