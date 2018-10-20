@@ -85,89 +85,6 @@ int BinarySearchV2(const int array[], int n, int target)
     return -1;
 }
 
-void testBinarySearch()
-{
-    int a[] = {0,1,2,3,4,5,6,7};
-    int size = sizeof(a)/sizeof(int);
-
-    int ret = BinarySearchV2(a, size, 3);
-    //int ret = BinarySearchByRecursion(a, 0, size-1, i);
-    if (ret != -1)
-    {
-        std::cout << "Search success, index: " << ret << std::endl;
-    }
-    else
-        std::cout << "Search failed!" << std::endl;
-
-}
-
-int floorV1(const int array[], int n, int target)
-{
-    int targetindex = BinarySearch(array, n, target);
-    if (targetindex == -1)
-    {
-        return -1;
-    }
-    if (targetindex == 0)
-    {
-        return 0;
-    }
-
-    int first = targetindex;
-
-    while (array[first-1] == array[targetindex])
-    {
-        first = first - 1;
-    }
-    return first;
-}
-
-int floorV2(const int array[], int n, int target)
-{
-    assert(n > 1);
-
-    int low = 0;
-    int high = n - 1;
-
-    while (low <= high)
-    {
-        int mid = low + ((high - low) >> 1);
-        printSearch(array, n, target, low, high, mid);
-
-        if (array[mid] >= target)
-        {
-            high = mid - 1;
-        }
-        else
-        {
-            low = mid + 1;
-        }
-    }
-    std::cout << "while exit, low:" << low << " high:" << high << std::endl;
-    if(array[low] > target )
-        return low - 1;
-
-    return low;
-}
-void testFloor()
-{
-    int a[] = {0,1,1,2,2,2,3,3,3,3,4,4,4,6,7};
-    int size = sizeof(a)/sizeof(int);
-
-    for (int i = 0; i <= 8; ++i)
-    {
-        int ret = floorV2(a, size, i);
-
-        if (ret != -1)
-        {
-            std::cout << "Search success, first index: " << ret << std::endl;
-        }
-        else
-            std::cout << "Search failed!" << std::endl;
-    }
-
-}
-
 int BinarySearchByRecursion(const int array[], int low, int high, int target)
 {
     if (low > high)
@@ -187,12 +104,113 @@ int BinarySearchByRecursion(const int array[], int low, int high, int target)
         return mid;
 }
 
+void testBinarySearch()
+{
+    int a[] = {0,1,2,3,4,5,6,7};
+    int size = sizeof(a)/sizeof(int);
+
+    int ret = BinarySearchV2(a, size, 3);
+    //int ret = BinarySearchByRecursion(a, 0, size-1, i);
+    if (ret != -1)
+    {
+        std::cout << "Search success, index: " << ret << std::endl;
+    }
+    else
+        std::cout << "Search failed!" << std::endl;
+
+}
+
+int floor(const int array[], int n, int target)
+{
+    assert(n >= 0);
+
+    if (target < array[0])
+        return -1;
+
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high)
+    {
+        int mid = low + ((high - low) >> 1);
+        printSearch(array, n, target, low, high, mid);
+
+        if (array[mid] >= target)
+        {
+            high = mid - 1;
+        }
+        else
+        {
+            low = mid + 1;
+        }
+
+    }
+    std::cout << "while exit, low:" << low << " high:" << high << std::endl;
+    if ((low - 1 >=0) && array[low] > target )
+        return low - 1;
+
+    return low;
+}
+
+void testFloor()
+{
+    int a[] = {0,1,1,2,2,2,3,3,3,3,4,4,4,6,7};
+    int size = sizeof(a)/sizeof(int);
+
+    int ret = floor(a, size, 5);
+    if (ret != -1)
+    {
+        std::cout << "Search success, index: " << ret << std::endl;
+    }
+    else
+        std::cout << "Search failed!" << std::endl;
+}
+
+int ceil(const int array[], int n, int target)
+{
+    assert(n > 1);
+
+    int low = 0;
+    int high = n;
+
+    while (low < high)
+    {
+        int mid = low + ((high - low) >> 1);
+        printSearch(array, n, target, low, high, mid);
+
+        if (array[mid] <= target)
+        {
+            low = mid + 1;
+        }
+        else
+        {
+            high = mid;
+        }
+    }
+    std::cout << "while exit, low:" << low << " high:" << high << std::endl;
+    if ((high - 1 >= 0) && array[high-1] >= target)
+        return high-1;
+
+    return high;
+}
+
+void testCeil()
+{
+    int a[] = {0,1,1,2,2,2,3,3,3,3,4,4,4,6,7};
+    int size = sizeof(a)/sizeof(int);
+
+    int ret = ceil(a, size, 9);
+
+    std::cout << "Search success, first index: " << ret << std::endl;
+}
 
 int main()
 {
-    testBinarySearch();
+    //testBinarySearch();
 
-    //testFloor();
+    testFloor();
+
+    //testCeil();
 
     return 0;
 

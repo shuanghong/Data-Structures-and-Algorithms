@@ -8,7 +8,7 @@
 [https://zh.wikipedia.org/wiki/二分搜索算法](https://zh.wikipedia.org/wiki/二分搜索算法)
 
 ## 前提条件
-二分查找适用于对**有序**数组的查找
+二分查找适用于对**有序**数据的查找
 
 ## 性能
 每次把查找范围减少一半, 时间复杂度为 O(logN).
@@ -130,7 +130,7 @@ low + (high - low) 的最大值不会超过 high, 不会产生溢出, 并使用�
 5. 当 high=n-1, while (low <= high) 时, 最后一步查找时闭区间内的所有元素都被比较了. high=n, while (low < high)时, 每一次查找空间至少有 2 个元素, 最后一步查找时区间内还剩两个元素, 比较其中一个之后 low == high 退出, 还剩下 1 个元素, 需要评估是否符合条件
 
 
-### 递归方式实现
+## 递归方式实现
 二分查找也可以采用递归方式实现, 但是递归调用存在着压栈/出栈的开销, 其效率是一般比迭代的方式低.
 
 	int BinarySearchByRecursion(const int array[], int low, int high, int target)
@@ -155,4 +155,53 @@ low + (high - low) 的最大值不会超过 high, 不会产生溢出, 并使用�
 
 ## 二分查找的扩展
 
-### 查找第一个(floor)/最后一个等值(ceil)
+### 查找小于或等于 target 的值, 即通常意义上的 floor() 函数实现
+floor() 实现有 3 个要点:  
+1. 如果找到 target, 返回第一个 target 相应的索引 index  
+2. 如果没有找到 target, 返回比 target 小的最大值相应的索引, 如果这个最大值有多个, 返回最大索引
+3. 如果这个 target 比整个数组的最小元素值还要小, 则不存在这个 target 的 floor 值, 返回-1
+
+	int floor(const int array[], int n, int target)
+	{
+	    assert(n >= 0);
+
+	    if (target < array[0])
+	        return -1;
+	
+	    int low = 0;
+	    int high = n - 1;
+
+	    while (low <= high)
+	    {
+	        int mid = low + ((high - low) >> 1);
+	
+	        if (array[mid] >= target)
+	        {
+	            high = mid - 1;
+	        }
+	        else
+	        {
+	            low = mid + 1;
+	        }
+	
+	    }
+
+	    if ((low - 1 >=0) && array[low] > target )
+	        return low - 1;
+	
+	    return low;
+	}
+
+### 关键语法
+1. 初始条件: low = 0, high = n-1. 查找范围是左闭右闭区间
+2. 向左查找: high = mid-1. 这里包含了相等的情况, 因为相等时仍然需要向左查找
+3. 向右查找: low = mid+1. 这里为什么不是 low = mid, 因为当循环到 low、high 接近时, 如果下一次计算 mid 时, mid = (low + high)/2 向下取整, low 一直等于 mid, array[mid] < target 陷入死循环
+4. 循环终止: low > high,  当循环到 low == high 时, 区间内的值都被比较过了, 返回 low 值
+
+	![](https://i.imgur.com/9iJSabO.jpg)
+
+5. 后续处理. 当最后一次循环low == high 时, 如果 low = mid + 1, 有可能存在 array[low] > target 的情况
+
+	![](https://i.imgur.com/aRuyPGg.jpg)
+
+### 查找大于或等于 target 的值, 即通常意义上的 ceil() 函数实现
